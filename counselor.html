@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Counselor Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card">
+<h1>Counselor Dashboard</h1>
+
+<div class="grid">
+<div class="role">
+<h2>Case A</h2>
+<p>High stress level detected.</p>
+<button onclick="approve()">Approve Support</button>
+</div>
+
+<div class="role">
+<h2>Case B</h2>
+<p>Possible social isolation.</p>
+<button onclick="monitor()">Monitor Only</button>
+</div>
+</div>
+
+<p id="decision"></p>
+
+<br>
+<a class="button" href="index.html">Back</a>
+</div>
+
+<script>
+function approve(){
+document.getElementById("decision").innerText="Support approved.";
+}
+
+function monitor(){
+document.getElementById("decision").innerText="Monitoring only.";
+}
+</script>
+</body>
+</html>
