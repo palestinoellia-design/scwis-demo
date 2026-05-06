@@ -1,1 +1,0 @@
-# scwis-demo
