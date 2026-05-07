@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCWIS | Smart Campus Wellness Information System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+<a class="logo" href="#top"><span>♥</span>SCWIS</a>
+<div class="navlinks">
+<a href="#roles">Roles</a>
+<a href="#process">Process</a>
+<a href="#system">Platform</a>
+</div>
+<a class="navbtn" href="#system">Open System</a>
+</nav>
+
+<main id="top">
+<section class="hero">
+<div>
+<span class="badge">Interactive Mental Wellness Platform · Privacy-first · Human-in-the-loop</span>
+<h1>Student Consent → AI Risk Detection → Counselor Review → Tiered Intervention → Follow-up Tracking</h1>
+<p>SCWIS is a smart campus wellness platform designed to support student mental health through explainable behavioral analytics, counselor oversight, and privacy-centered intervention workflows.</p>
+
+<div class="actions">
+<a class="btn dark" href="#roles">Explore Roles</a>
+<a class="btn light" href="#system">Launch Demo</a>
+</div>
+
+<div class="stats">
+<div class="card stat"><h2 id="statConsented">0/0</h2><p>Students Consented</p></div>
+<div class="card stat"><h2 id="statSignals">0</h2><p>AI Risk Signals</p></div>
+<div class="card stat"><h2 id="statReviewed">0</h2><p>Reviewed Cases</p></div>
+</div>
+</div>
+
+<div class="card preview">
+<div class="previewTop">
+<small>LIVE SYSTEM PREVIEW</small>
+<h2>SCWIS Command Center</h2>
+</div>
+
+<div class="previewBody">
+<div class="mini">
+<div><span>Records</span><b id="miniRecords">0</b></div>
+<div><span>High Risk</span><b id="miniHigh" class="redText">0</b></div>
+<div><span>Pending Cases</span><b id="miniPending" class="amberText">0</b></div>
+</div>
+
+<div class="queue">
+<div class="head">
+<h3>Risk Signal Queue</h3>
+<button class="small-btn" onclick="runAI()">Run AI</button>
+</div>
+<div id="previewQueue"></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="roles" class="section">
+<div class="section-head">
+<span class="badge">Three Core Portals</span>
+<h2>Student, Counselor, and Administrator systems connected through one secure platform.</h2>
+<p>Each portal supports interactive workflows including consent management, AI analytics, human review, interventions, follow-up, and audit tracking.</p>
+</div>
+
+<div class="windows">
+<div class="card window">
+<div class="icon green">S</div>
+<h3>Student Portal</h3>
+<p>Students can complete wellness check-ins, manage consent settings, and access personal wellness resources.</p>
+<ul>
+<li>Self-assessment check-ins</li>
+<li>Consent management</li>
+<li>Personal wellness reports</li>
+<li>Support resources & emergency contact</li>
+</ul>
+<button class="btn dark" onclick="openPanel('student')">Open Student Portal</button>
+</div>
+
+<div class="card window">
+<div class="icon orange">C</div>
+<h3>Counselor Dashboard</h3>
+<p>Counselors review AI-generated alerts, verify risk explanations, and manage intervention workflows.</p>
+<ul>
+<li>Risk monitoring dashboard</li>
+<li>Human review approval</li>
+<li>Tiered interventions</li>
+<li>Case tracking & follow-up</li>
+</ul>
+<button class="btn dark" onclick="openPanel('counselor')">Open Counselor Dashboard</button>
+</div>
+
+<div class="card window">
+<div class="icon purple">A</div>
+<h3>Administrator Panel</h3>
+<p>Administrators manage system configuration, data imports, and campus-wide analytics.</p>
+<ul>
+<li>CSV data import</li>
+<li>Campus analytics</li>
+<li>Risk threshold settings</li>
+<li>Trust & audit dashboard</li>
+</ul>
+<button class="btn dark" onclick="openPanel('admin')">Open Admin Panel</button>
+</div>
+</div>
+</section>
+
+<section id="process" class="section">
+<div class="section-head">
+<span class="badge">Workflow</span>
+<h2>Data Collection → AI Detection → Counselor Review → Tiered Intervention → Follow-up</h2>
+<p>The system never performs automatic intervention. All actions require counselor review and approval.</p>
+</div>
+</section>
+
+<section id="system" class="section">
+<div class="section-head">
+<span class="badge">Interactive Platform</span>
+<h2>Experience the complete SCWIS workflow through all three role-based portals.</h2>
+</div>
+
+<div class="tabs">
+<button id="tabStudent" class="active" onclick="openPanel('student')">Student</button>
+<button id="tabCounselor" onclick="openPanel('counselor')">Counselor</button>
+<button id="tabAdmin" onclick="openPanel('admin')">Administrator</button>
+</div>
+
+<div id="studentPanel" class="panel active">
+<div class="portal">
+<div class="card">
+<h3>Student Profiles & Consent</h3>
+<p class="muted">Select a student profile to simulate interactions.</p>
+<div id="studentList" class="studentList"></div>
+
+<div class="actionList">
+<button id="consentButton" onclick="toggleConsent()">Withdraw Consent</button>
+<button class="bluebtn" onclick="submitSelfAssessment()">Submit Wellness Check-in</button>
+<button onclick="downloadStudentData()">Download Personal Data</button>
+<button class="outline" onclick="deleteStudentData()">Delete Optional Data</button>
+</div>
+</div>
+
+<div class="card">
+<div class="profileHead">
+<div id="profileAvatar" class="avatar darkA big">A</div>
+<div>
+<h3 id="profileName">Student</h3>
+<p id="profileMeta">ID · Consent</p>
+</div>
+<span id="profileRisk" class="pill balanced">Balanced</span>
+</div>
+
+<div id="dataGrid" class="dataGrid"></div>
+
+<div class="note">
+Recommended resources: mindfulness breathing, time management, academic support, counseling appointments, and emergency support access.
+</div>
+</div>
+</div>
+</div>
+
+<div id="counselorPanel" class="panel">
+<div class="grid4">
+<div class="card stat"><h2 id="dashNeedReview">0</h2><p>Students Requiring Attention</p></div>
+<div class="card stat"><h2 id="dashPending">0</h2><p>Pending Cases</p></div>
+<div class="card stat"><h2 id="dashReviewed">0</h2><p>Reviewed Cases</p></div>
+<div class="card stat"><h2 id="dashSupport">0</h2><p>Interventions Started</p></div>
+</div>
+
+<div class="caseLayout">
+<div class="card">
+<div class="head">
+<h3>Risk Alerts & Human Review</h3>
+<button class="small-btn" onclick="runAI()">Generate AI Alerts</button>
+</div>
+<div id="caseGrid" class="caseGrid"></div>
+</div>
+
+<div class="card">
+<h3>Intervention Levels</h3>
+<div class="note">Level 1: Self-help resources</div>
+<div class="note warnNote">Level 2: Gentle reminders & appointment suggestions</div>
+<div class="note redNote">Level 3: Active counselor outreach & counseling</div>
+</div>
+</div>
+</div>
+
+<div id="adminPanel" class="panel">
+<div class="demo">
+<div class="card">
+<h3>Data Import & System Settings</h3>
+
+<label class="upload">
+<span class="uploadIcon">⬆</span>
+<strong>Upload CSV Dataset</strong>
+<span>Use the provided template format</span>
+<input type="file" accept=".csv" onchange="uploadCSV(event)">
+</label>
+
+<button class="wide dark" onclick="downloadCSVTemplate()">Download CSV Template</button>
+<button class="wide purple" onclick="runAI()">Run AI Detection</button>
+<button class="wide" onclick="resetDatabase()">Reset Local Database</button>
+</div>
+
+<div class="card">
+<div class="head">
+<div>
+<h3>Student Records</h3>
+<p class="muted">Administrative demonstration view.</p>
+</div>
+<div class="search">
+🔍
+<input id="searchInput" placeholder="Search student or ID" oninput="renderAll()">
+</div>
+</div>
+
+<div id="recordsList" class="records"></div>
+</div>
+</div>
+
+<div class="card audit">
+<h3>Audit Log & Trust Dashboard</h3>
+<p>Tracks consent changes, AI detections, counselor reviews, interventions, and system updates.</p>
+<div id="logList" class="logs"></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+SCWIS · Privacy-first · Human-in-the-loop · No automatic intervention
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
